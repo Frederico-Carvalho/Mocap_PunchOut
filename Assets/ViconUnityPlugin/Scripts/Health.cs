@@ -2,10 +2,15 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
-    public int current = 100;
+    public float current = 100;
 
-    public void TakeDamage(int amount)
+    public void TakeDamage(float amount)
     {
+        if (current <= 0) return;
         current -= amount;
+        if (current <= 0)
+        {
+            GetComponent<RagdollSwap>().TriggerRagdoll();
+        }
     }
 }
